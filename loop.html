@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loops</title>
+    <link rel="stylesheet" href="/css/blogs.css">
+</head>
+<body>
+    
+<div class="blogs">
+    <div class="blog-box">
+        <!--Blog Image-->
+        <div class="blog-img">
+            <img src="/assets/Loop 800 x 500.jpg" alt="loop">
+        </div>
+
+        <!--Blog Text-->
+        <div class="blog-text">
+            <div class="blog-title">
+                <h1>Event Loops</h1>
+            </div>
+            <br>
+            <p>
+                This question is often asked: <br>
+
+                How long will the following code continue to print “forever” in 
+                the console? <br><br>
+                <pre><code>
+                    let f = true;
+
+                    setTimeout(() => {
+                    f = false;
+                    }, 300)
+
+                    while(f) {
+                    console.log(“forever”);
+                    }
+
+                </code></pre>
+                <br>
+
+                The answer: <br>
+                FOREVER! <br><br>
+
+                The explanation: <br>
+                The setTimeout function cannot execute because the code is stuck 
+                in a never-ending loop. The loop never ends because no condition 
+                for ending was given. 
+                <br><br>
+                Break it down:
+                <br><br>
+                While(f) simply means the function will continue to run as long as f 
+                remains true. Because f is assigned the value of true, it will never be 
+                false within the while(f) function. While(f) can’t call setTimeout until 
+                it finishes printing “forever” in the console. Unfortunately, while(f) 
+                will never finish printing “forever” in the console because it is stuck 
+                in a never-ending loop. This is why setTimeout is never called and the 
+                code doesn’t end in 300 milliseconds.  
+                <br><br><br><br>
+
+                If I change the code to this: <br>
+                <pre><code>
+                    let h = 0;
+
+                    let hi = setInterval(() => {
+                    console.log(h++);
+                    }, 300);
+
+                    setTimeout(() => {
+                    clearInterval(hi);
+                    }, 3000)
+
+                </code></pre>
+                <br>
+                How long will the interval execute?
+                <br><br>
+                The answer:
+                <br>
+                The interval is executed every 300 milliseconds then stops 
+                in 3 seconds.
+                <br><br>
+                The explanation:
+                <br><br>
+                The code inside the setTimeout function is the first to run. 
+                It tells setInterval to increment h every 300 milliseconds, but after 
+                3 seconds clearInterval will be initiated and the code stops.
+                <br><br><br><br>
+
+                Event loops are another coding concept that can easily be overcomplicated. 
+                An explanation of event loops will also require an explanation of how JavaScript runs code: 
+                <br><br>
+                1) JavaScript is “Single Threaded” which means it runs code one line at a time (for the most part).
+                <br><br>
+                2) JavaScript contains both Synchronous events and Asynchronous events. Synchronous code will 
+                perform one task at a time and will block the execution of all other tasks until the current task 
+                is completed. Asynchronous code does not have to wait for the completion of one task before being 
+                responsive to another. Asynchronous code is useful when faced with tasks that take a long time to run.
+                <br><br>
+                3) JavaScript runtime contains a queue that holds messages that are associated with a 
+                specific function. The event loop pulls messages from the queue and places the associated 
+                function in the call stack.
+                <br><br>
+                4) One function inside the call stack is executed at a time but that function may need 
+                to call other functions to run.
+                <br><br>
+                5) When everything inside the call stack is finished running the event loop will look 
+                to see if the message queue has anything pending. 
+                <br><br>
+                6) The event loop will take whatever is next in the message queue and place it in the 
+                call stack and the whole process starts over.
+                <br><br>
+                Here is a crude visual representation:
+                <br><br>
+                <img src="/assets/Event Loop.jpg" alt="event loop">
+                <br><br><br><br>
+
+                Code is placed in the stack and is processed first in last out (FILO).
+
+
+
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

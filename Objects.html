@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+    <link rel="stylesheet" href="/css/blogs.css">
+</head>
+<body>
+    
+<div class="blogs">
+    <div class="blog-box">
+        <!--Blog Image-->
+        <div class="blog-img">
+            <img src="/assets/objects 800 x 500.jpg" alt="Objects">
+        </div>
+
+        <!--Blog Text-->
+        <div class="blog-text">
+            <div class="blog-title">
+                <h1>What are objects in JavaScript?</h1>
+            </div>
+            
+            <br>
+            <p>
+                Here is an example:
+                <pre><code>
+                    const worker = {
+                        name: "bee",
+                        job: "hammer swinger",
+                        age: 90,
+                        favoriteFood: "honey",
+                    
+                    }
+                    
+                    console.log(worker.job);                    
+
+                </code></pre> 
+
+                The object is worker. Everything inside the curly brackets {} 
+                are properties of the object. Here is what the above example would show 
+                in the console: 
+                <br><br>
+
+                <div class="con">
+                    hammer swinger
+                </div> <br><br>
+
+                Only hammer swinger is shown because the job property of the worker object 
+                is being accessed.  If we instead access the entire object like this:
+                 <br><br>
+
+                <pre><code>
+                    console.log(worker);
+                </code></pre> 
+                <br>
+
+                Then the console will show all the properties like this:
+                <br><br>
+
+                <div class="con">
+                    {name: 'bee', job: 'hammer swinger', age: 90, favoriteFood: 'honey'}  
+                </div> 
+                <br><br>
+                
+                You can change properties of the object like this:
+
+                 <br><br>
+                <pre><code>
+                    const worker = {
+                        name: "bee",
+                        job: "hammer swinger",
+                        age: 90,
+                        favoriteFood: "honey",
+                    
+                    }
+                    
+                    worker.age = 10
+                    
+                    console.log(worker.age);
+                    
+                </code></pre> 
+                <br>
+
+                Here we changed the Age property of the worker object from 90 to 10.
+                This is what will show in the console:
+
+                 <br><br>
+
+                <div class="con">
+                    10
+                </div>
+                <br><br>
+
+                Now if we access the entire object like this:
+
+                <br><br>
+
+                <pre><code>
+                    console.log(worker);
+
+                </code></pre> 
+                <br>
+                The console will show this:
+
+                <br><br>
+
+                <div class="con">
+                    {name: 'bee', job: 'hammer swinger', age: 10, favoriteFood: 'honey'}
+                </div>  
+                <br><br>
+
+                To delete a property, do this: 
+                <br><br>
+
+                <pre><code>
+                    const worker = {
+                        name: "bee",
+                        job: "hammer swinger",
+                        age: 90,
+                        favoriteFood: "honey",
+                    
+                    }
+                    
+                    delete worker.age;
+                    
+                    console.log(worker);
+
+
+                </code></pre>
+                <br><br>
+                The console shows this:
+                <br><br>
+
+                <div class="con">
+                    {name: 'bee', job: 'hammer swinger', favoriteFood: 'honey'}
+                </div>
+                <br><br>
+                Notice the age property is gone.
+                <br>
+                It is important to note that delete only works with object properties, 
+                it will not work on local variables.
+                <br>
+                Here is an example:
+                <br>
+                <pre><code>
+                    const boss = (function(money) {
+                        delete money;
+                        return money;
+                    }) ("dollars");
+                    
+                    console.log(boss);
+                    
+                </code></pre>
+                <br><br>
+                Here we have a function with the variable money as a property of the object boss. 
+                Inside the function we are attempting to delete the variable money but delete will 
+                not work on a variable, so we are still able to view the object boss in the console 
+                without any problems.
+                <br><br>
+                Here is what the console will show:
+                <br><br>
+
+                <div class="con">
+                    dollars 
+                </div>
+                <br><br>
+
+                If a string is used as a property of an object like this:
+                <br><br>
+
+                <pre><code>
+                    const worker = {
+                        name: "bee",
+                        job: "hammer swinger",
+                        age: 90,
+                        favoriteFood: "honey",
+                        "chickens fly fast": "favorite book"
+                    }
+                    
+                </code></pre>
+                <br><br>
+                The string will need to be inside square brackets [ ] in order to be accessed like this:
+                <br><br>
+
+                <pre><code>
+                    console.log(worker["chickens fly fast"]);
+                </code></pre>
+                <br><br>
+
+                and the console will show this:
+                <br><br>
+
+                <div class="con">
+                    favorite book
+                </div>
+                <br><br>
+
+                Deleting the string property would be done in the same way using the square brackets, [ ].
+                <br><br>
+
+                Now we can add dynamic values to an object like this:
+                <br><br>
+
+                <pre><code>
+                    const property = "heavy";
+                    const element = "iron";
+
+                    const lifting = {
+                    [property]: element,
+                    };
+
+                    console.log(lifting);
+
+                </code></pre>
+                <br><br>
+
+
+
+                The console will show this:
+                <br><br>
+
+                <div class="con">
+                    {heavy: 'iron'}
+                    heavy: "iron"
+                    [[Prototype]]: Object
+
+                </div>
+                <br><br>
+
+                Note the square brackets inside the lifting object. Without them the console 
+                would show property: iron instead of heavy: iron. 
+                <br><br>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
