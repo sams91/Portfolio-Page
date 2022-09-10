@@ -1,8 +1,6 @@
 
 
 
-
-
 .contact{
     display: grid;
     place-items: center;
@@ -17,3 +15,6 @@
   #email{
     width: 500px;
   }
+
+
+
